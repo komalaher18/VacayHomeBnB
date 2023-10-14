@@ -1,6 +1,6 @@
 # `<name of application here>`
 
-"VacationHome"
+"VacayHomeBnB"
 
 ## Database Schema Design
 
