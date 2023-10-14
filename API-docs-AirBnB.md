@@ -5,6 +5,7 @@
 ## Database Schema Design
 
 `<insert database schema design here>`
+![schema image](VacayHomebnb.png)
 
 ## API Documentation
 
