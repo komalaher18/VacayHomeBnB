@@ -8,15 +8,15 @@ module.exports = {
     await ReviewImage.bulkCreate([
       {
         reviewId: 1,
-        url:
+        url:"https://images.app.goo.gl/MKPwjzoYyzPLryLG6",
       },
       {
         reviewId: 2,
-        url:,
+        url:"https://images.app.goo.gl/YrzDphdvWk46LbSn9",
       },
       {
         reviewId: 3,
-        url:,
+        url:"https://images.app.goo.gl/4wtqzPh3xNAw3Rbp8",
       },
     ], { validate: true})
   },
