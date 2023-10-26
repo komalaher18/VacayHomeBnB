@@ -47,22 +47,24 @@ router.post(
       where : { email}
     });
     if(isEmailAvailable){
-      const err = new Error('User already exists');
-      err.status = 500;
-      err.title = 'User already exists ';
-      err.errors = { email: "User with that email already exists" };
-      return next(err);
+      // const err = new Error('User already exists');
+      // err.status = 500;
+      // err.title = 'User already exists ';
+      // err.errors = { email: "User with that email already exists" };
+      // return next(err);
+      return res.status(500).json({ email: "User with that email already exists" });
     }
     // Error response: User already exists with the specified username
     const isUserAvailable = await User.findOne({
       where : { username }
     });
     if(isUserAvailable){
-      const err = new Error('User already exists');
-      err.status = 500;
-      err.title = 'User already exists';
-      err.errors = { "username": "User with that username already exists" };
-      return next(err);
+      // const err = new Error('User already exists');
+      // err.status = 500;
+      // err.title = 'User already exists';
+      // err.errors = { "username": "User with that username already exists" };
+      // return next(err);
+      return res.status(500).json({ username: "User with that username already exists" });
     }
 
     const user = await User.create({ firstName, lastName, email, username, hashedPassword });
