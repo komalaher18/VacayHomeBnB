@@ -1,7 +1,7 @@
 const express = require('express');
 const { Spot , SpotImage, User} = require("../../db/models");
 const { check } = require('express-validator');
-const { handleValidationErrors } = require('../../utils/validation');
+const { handleValidationErrors, newhandleValidationErrors } = require('../../utils/validation');
 const { requireAuth } = require('../../utils/auth');
 
 const router = express.Router();
@@ -39,7 +39,8 @@ check('price')
     .isFloat({ min: 0})
     .withMessage('Price per day is required'),
 
-  handleValidationErrors
+//   handleValidationErrors
+newhandleValidationErrors
 ];
 
 // Get all Spots
