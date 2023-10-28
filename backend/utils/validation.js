@@ -37,7 +37,9 @@ const newhandleValidationErrors = (req, res, next) => {
     // err.title = "Bad request.";
     // next(err);
     return res.status(400).json({ "message": "Bad Request", errors });
+    // next(err);
   }
+   next();
 
 
 
