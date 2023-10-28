@@ -23,6 +23,8 @@ module.exports = {
         name: "The Golden Bay",
         description: "Beautiful views in every direction-inside and out.",
         price: 320,
+        previewImage : "https://spots/spot1.png",
+        avgRating: 3.5
 
 
       },
@@ -37,6 +39,8 @@ module.exports = {
         name: "OceanView Resort",
         description: "Extraordinary views of the Pacific Ocean",
         price: 300,
+        previewImage : "https://spots/spot2.png",
+        avgRating: 4
       },
 
       {
@@ -50,6 +54,8 @@ module.exports = {
         name: "The Skyline",
         description: "amazing views of Downtown San Diego",
         price: 280,
+        previewImage : "https://spots/spot3.png",
+        avgRating: 3.4
       }
     ], { validate : true});
   },
