@@ -1,7 +1,9 @@
 const express = require('express');
 const { Spot , SpotImage, User, Review, ReviewImage} = require("../../db/models");
 const { check } = require('express-validator');
-const { handleValidationErrors, newHandleValidationErrors } = require('../../utils/validation');
+
+const { handleValidationErrors, newhandleValidationErrors } = require('../../utils/validation');
+
 const { requireAuth } = require('../../utils/auth');
 
 const router = express.Router();
@@ -40,7 +42,7 @@ check('price')
     .withMessage('Price per day is required'),
 
 //   handleValidationErrors
-newHandleValidationErrors,
+
 ];
 
 const validateReview = [
@@ -53,6 +55,8 @@ const validateReview = [
         .withMessage('Stars must be an integer from 1 to 5'),
     // handleValidationErrors,
     newHandleValidationErrors
+
+
 ];
 
 // Get all Spots
@@ -254,10 +258,6 @@ router.delete("/:spotId", requireAuth, async(req, res, next) =>{
     res.status(200).json({ message: "Successfully deleted"});
 
 });
-
-
-
-
 
 
 
