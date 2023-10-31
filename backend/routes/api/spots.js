@@ -1,5 +1,5 @@
 const express = require('express');
-const { Spot , SpotImage, User, Review, ReviewImage} = require("../../db/models");
+const { Spot , SpotImage, User, Review, ReviewImage, Booking} = require("../../db/models");
 const { check } = require('express-validator');
 
 const { handleValidationErrors, newhandleValidationErrors } = require('../../utils/validation');
@@ -57,6 +57,17 @@ const validateReview = [
     // handleValidationErrors,
     newhandleValidationErrors
 ];
+
+
+const validateBooking = [
+    check('startDate')
+        .exists({ checkFalsy: true })
+        .withMessage("Start date is required"),
+    check('endDate')
+        .exists({ checkFalsy: true })
+        .withMessage("End date is required"),
+        newhandleValidationErrors
+]
 
 // Get all Spots
 router.get("/", async( req, res) => {
@@ -147,6 +158,59 @@ router.get("/:spotId/reviews", async(req, res, next) =>{
     });
     res.json({ Reviews: reviews })
 });
+
+
+// Get all Bookings for a Spot based on the Spot's id
+
+router.get("/:spotId/bookings", async(req, res) =>{
+    const userId = req.user.id
+    const spot = await Spot.findByPk(req.params.spotId);
+
+     if(!spot) {
+        return res.status(404).json({ "message": "Spot couldn't be found" });
+    };
+    let allBookings;
+
+    if(spot.ownerId !== userId){
+         allBookings = await Booking.findAll({
+            where: { spotId: req.params.spotId },
+            attributes:["spotId", "startDate", "endDate"]
+        });
+    } else {
+        allBookings = await Booking.findAll({
+            where:{spotId: req.params.spotId},
+            include :{
+                model: User,
+                attributes: ["id", "firstName", "lastName"]
+            }
+        });
+        allBookings = allBookings.map(booking =>{
+            const { User, ...bookingInfo} = booking.toJSON()
+            const editedBooking = { User, ...bookingInfo};
+
+            return editedBooking;
+
+        });
+    }
+    res.json({ Bookings: allBookings });
+});
+
+
+// Create a Booking from a Spot based on the Spot's id
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Create a Review for a Spot based on the Spot's id
 
