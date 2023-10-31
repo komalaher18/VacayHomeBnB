@@ -71,7 +71,7 @@ const validateBooking = [
 
 // Get all Spots
 router.get("/", async( req, res) => {
-    const Spots = await Spot.findAll({
+    const spots = await Spot.findAll({
         include: [
             {
                 model: SpotImage,
@@ -80,20 +80,26 @@ router.get("/", async( req, res) => {
             }
         ],
     });
-    const previewSpots = Spots.reduce((acc, spot) =>{
+    // const previewSpots = Spots.reduce((acc, spot) =>{
+    //     const { SpotImages, ...spotInfo } = spot.toJSON();
+    //     const previewSpot = { ...spotInfo, previewImage: ""};
+    //     if (SpotImages.length) previewSpot.previewImage = SpotImages[0].url;
+    //     acc.push(previewSpot);
+    //     return acc;
+    // }, []);
+      const previewSpots = spots.map(spot =>{
         const { SpotImages, ...spotInfo } = spot.toJSON();
-        const previewSpot = { ...spotInfo, previewImage: ""};
-        if (SpotImages.length) previewSpot.previewImage = SpotImages[0].url;
-        acc.push(previewSpot);
-        return acc;
-    }, []);
+        const editedSpot = { ...spotInfo};
+        return editedSpot;
+
+    })
     return res.json({Spots : previewSpots});
 });
 
 // Get all Spots owned by the Current User;
 router.get("/current", requireAuth, async(req, res) => {
     const userId = req.user.id
-    const allSpots = await Spot.findAll({
+    const spots = await Spot.findAll({
         where: { ownerId : userId},
         include: [{
             model: SpotImage,
@@ -101,13 +107,20 @@ router.get("/current", requireAuth, async(req, res) => {
             attributes: ["url"]
         }]
     });
-    const previewSpots = allSpots.reduce((acc, spot) =>{
+    // const previewSpots = spots.reduce((acc, spot) =>{
+    //     const { SpotImages, ...spotInfo } = spot.toJSON();
+    //     const previewSpot = { ...spotInfo, previewImage: ""};
+    //     if (SpotImages.length) previewSpot.previewImage = SpotImages[0].url;
+    //     acc.push(previewSpot);
+    //     return acc;
+    // }, [])
+
+    const previewSpots = spots.map(spot =>{
         const { SpotImages, ...spotInfo } = spot.toJSON();
-        const previewSpot = { ...spotInfo, previewImage: ""};
-        if (SpotImages.length) previewSpot.previewImage = SpotImages[0].url;
-        acc.push(previewSpot);
-        return acc;
-    }, [])
+        const editedSpot = { ...spotInfo};
+        return editedSpot;
+
+    })
     return res.json({Spots : previewSpots});
 });
 
