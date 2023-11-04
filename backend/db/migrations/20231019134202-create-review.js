@@ -21,7 +21,7 @@ module.exports = {
           model: "Spots",
           key: "id"
         },
-        allowNull: false,
+        // allowNull: false,
         onDelete: "CASCADE"
       },
       userId: {
