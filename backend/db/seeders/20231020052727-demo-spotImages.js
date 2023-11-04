@@ -20,7 +20,7 @@ module.exports = {
       {
         spotId: 2,
         url: "https://images.app.goo.gl/hvUAAL1MzfJkodJY9",
-        preview: false
+        preview: true
       },
       {
         spotId: 3,

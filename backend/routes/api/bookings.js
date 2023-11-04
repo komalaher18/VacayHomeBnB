@@ -64,7 +64,7 @@ router.put("/:bookingId",[requireAuth, ...validateBooking],async (req, res) => {
 
     const newDate = new Date();
     if (Date.parse(endDate) <= newDate) {
-      res.status(403).json({ "message": "Past bookings can't be modified" });
+     return res.status(403).json({ "message": "Past bookings can't be modified" });
     }
 
     const bookings = await Booking.findAll({ where: { spotId: booking.spotId, id:{ [Op.ne]: booking.id} } });
@@ -115,7 +115,7 @@ router.delete("/:bookingId", requireAuth, async(req, res) =>{
     }
 
      if(deleteBooking.userId!== userId ) {
-        res.status(403).json({ "message": "Forbidden" });
+     return   res.status(403).json({ "message": "Forbidden" });
     }
 
     const currentDate = new Date();

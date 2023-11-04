@@ -64,10 +64,10 @@ router.post("/:reviewId/images", requireAuth ,async(req, res) =>{
     }
 
     if(review.userId !==userId  ){
-        res.status(403).json({ "message": "Forbidden" });
+       return res.status(403).json({ "message": "Forbidden" });
     };
 
-    if(review.ReviewImages.length > 10){
+    if(review.ReviewImages.length >= 10){
         return res.status(403).json({ "message": "Maximum number of images for this resource was reached" });
     }
 
@@ -94,7 +94,7 @@ router.put("/:reviewId", [requireAuth, ...validateReview],  async(req, res) =>{
     }
 
     if(review.userId !== userId){
-        res.status(403).json({ "message": "Forbidden" });
+      return  res.status(403).json({ "message": "Forbidden" });
     }
 
     const editedReview = await review.update(reviewInfo);
@@ -112,7 +112,7 @@ router.delete("/:reviewId", requireAuth, async(req, res) =>{
     }
 
     if(userId !== deleteReview.userId) {
-        res.status(403).json({ "message": "Forbidden" });
+      return  res.status(403).json({ "message": "Forbidden" });
     }
 
     await deleteReview.destroy();
