@@ -180,7 +180,7 @@ router.get("/:spotId", async(req, res) => {
         {
             model: User,
             as : 'Owner',
-            attributes: ["id", "firstname", "lastName"]
+            attributes: ["id", "firstName", "lastName"]
         },
         {
             model: Review,
