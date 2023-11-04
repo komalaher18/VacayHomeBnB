@@ -127,9 +127,12 @@ router.get("/",validateQuery,async( req, res) => {
         include: [
             {
                 model: SpotImage,
+
                 where: { preview: true },
                 attributes: ["url"],
+
             },
+
 
         ],
         limit,
