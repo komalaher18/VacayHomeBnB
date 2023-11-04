@@ -217,10 +217,61 @@ router.post("/", [requireAuth, ...validateSpot] ,async(req, res) =>{
     const spotInfo = req.body;
 
     const newSpot = await Spot.create({
-        ownerId: userId, ...spotInfo
+        ownerId: userId, avgRating:0, ...spotInfo
     })
     res.status(201).json(newSpot);
 } );
+
+// / // Create a Review for a Spot based on the Spot's id
+router.post("/:spotId/reviews", [requireAuth, ...validateReview] ,async(req, res) =>{
+    const {user} = req;
+    const{ review , stars}= req.body;
+    // const spotId = parseInt(req.params.spotId)
+    const spot = await Spot.findByPk(req.params.spotId,{
+         include: [{
+            model: Review,
+            attributes: ["stars"],
+        }],
+    });
+    // console.log("****",spot)
+
+    if(!spot) {
+        return res.status(404).json({ "message": "Spot couldn't be found" });
+
+    }
+    // console.log("****",spot)
+
+    const { Reviews,  avgRating } = spot.toJSON();
+
+    const rev = await Review.findOne({
+        where : { userId: user.id, spotId: req.params.spotId},
+
+    });
+
+    if(rev) {
+        return res.status(500).json({ "message": "User already has a review for this spot" });
+    }
+    if(Reviews.length){
+        // console.log("****", Reviews)
+        let sum = stars;
+        const starCount = Reviews.map(review =>{
+            sum = sum+ review.stars ;
+            return sum;
+        });
+        spot.update({...spot, avgRating: Number(starCount/Reviews.length).toFixed(1)});
+     }else{
+        spot.update({...spot, avgRating: stars});
+    }
+
+    const createReview = await Review.create({
+        userId : user.id,
+        spotId :req.params.spotId,
+        review,
+        stars
+    });
+    res.status(201).json(createReview)
+});
+
 
 
 
@@ -233,7 +284,7 @@ router.post("/:spotId/images", requireAuth, async(req, res) =>{
         return res.status(404).json({ "message": "Spot couldn't be found" });
     }
     if(spot.ownerId !==userId  ){
-        res.status(403).json({ "message": "Forbidden" });
+      return  res.status(403).json({ "message": "Forbidden" });
     };
     const spotId = req.params.spotId;
     const createSpotImage = await SpotImage.create({
@@ -269,7 +320,7 @@ router.put("/:spotId", [requireAuth, ...validateSpot],  async(req, res) => {
     };
 
     if(spot.ownerId !== userId){
-        res.status(403).json({ "message": "Forbidden" });
+      return  res.status(403).json({ "message": "Forbidden" });
     }
     if (spot.ownerId === userId) {
         const newSpot = {
@@ -298,7 +349,7 @@ router.delete("/:spotId", requireAuth, async(req, res, next) =>{
     }
 
     if(userId !== deleteSpot.ownerId) {
-        res.status(403).json({ "message": "Forbidden" });
+       return res.status(403).json({ "message": "Forbidden" });
     }
 
     await deleteSpot.destroy();
@@ -326,56 +377,6 @@ router.get("/:spotId/reviews", async(req, res) =>{
     ]
     });
     res.json({ Reviews: reviews })
-});
-
-// // Create a Review for a Spot based on the Spot's id
-router.post("/:spotId/reviews", [requireAuth, ...validateReview] ,async(req, res) =>{
-    const {user} = req;
-    const{ review , stars}= req.body;
-    // const spotId = parseInt(req.params.spotId)
-    const spot = await Spot.findByPk(req.params.spotId,{
-         include: [{
-            model: Review,
-            attributes: ["stars"],
-        }],
-    });
-    console.log("****",spot)
-
-    if(!spot) {
-        return res.status(404).json({ "message": "Spot couldn't be found" });
-    }
-    const { Reviews,  avgRating,...spotInfo} = spot.toJSON();
-
-    const rev = await Review.findOne({
-        where : { userId: user.id, spotId: req.params.spotId},
-
-    });
-
-    if(rev) {
-        return res.status(500).json({ "message": "User already has a review for this spot" });
-    }
-    if(Reviews.length){
-        // console.log("****", Reviews)
-        let sum = stars;
-        const starCount = Reviews.map(review =>{
-            sum = sum+ review.stars ;
-
-            return sum;
-        });
-        spot.update({...spot, avgRating: Number(starCount/Reviews.length).toFixed(1)});
-     }else{
-        spot.update({...spot, avgRating: stars});
-    }
-
-    const createReview = await Review.create({
-        userId : user.id,
-        spotId : req.params.spotId,
-        review,
-        stars
-
-    });
-
-    res.status(201).json(createReview)
 });
 
 
@@ -420,11 +421,11 @@ router.post("/:spotId/bookings",[requireAuth, ...validateBooking],async(req, res
     const spot = await Spot.findByPk(req.params.spotId);
 
     if (!spot) {
-     res.status(404).json({ "message": "Spot couldn't be found" });
+    return res.status(404).json({ "message": "Spot couldn't be found" });
     }
 
     if (spot.ownerId === userId) {
-      res.status(403).json({ "message": "Forbidden" });
+     return res.status(403).json({ "message": "Forbidden" });
     }
 
     if (startDate >= endDate) {
@@ -438,7 +439,7 @@ router.post("/:spotId/bookings",[requireAuth, ...validateBooking],async(req, res
 
     const newDate = new Date();
     if (Date.parse(endDate) <= newDate) {
-      res.status(403).json({ "message": "Past bookings can't be modified" });
+    return  res.status(403).json({ "message": "Past bookings can't be modified" });
     }
 
     const bookings = await Booking.findAll({ where: { spotId: spot.id } });

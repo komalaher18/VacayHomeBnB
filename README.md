@@ -170,7 +170,7 @@ user's information.
 - Request
 
   - Method: POST
-  - URL: /api/users/new /api/signUp
+  - URL: /api/users
   - Headers:
     - Content-Type: application/json
   - Body:
@@ -307,7 +307,7 @@ Returns all the spots owned (created) by the current user.
 - Request
 
   - Method: GET
-  - URL: /api/users/:userId/spots
+  - URL: /api/spots/current
   - Body: none
 
 - Successful Response
@@ -417,7 +417,7 @@ Creates and returns a new spot.
 - Request
 
   - Method: POST
-  - URL: /api/spots/new
+  - URL: /api/spots
   - Headers:
     - Content-Type: application/json
   - Body:
@@ -542,7 +542,7 @@ Updates and returns an existing spot.
 - Require proper authorization: Spot must belong to the current user
 - Request
 
-  - Method: PUT/PATCH
+  - Method: PUT
   - URL: /api/spots/:spotId
   - Headers:
     - Content-Type: application/json
@@ -672,7 +672,7 @@ Returns all the reviews written by the current user.
 - Request
 
   - Method: GET
-  - URL: /api/users/:userId/reviews
+  - URL: /api/reviews/current
   - Body: none
 
 - Successful Response
@@ -871,7 +871,7 @@ Create and return a new image for a review specified by id.
 - Request
 
   - Method: Post
-  - URL: /api/reviews/:id/image
+  - URL: /api/reviews/:reviewId/images
   - Headers:
     - Content-Type: application/json
   - Body:
@@ -1041,7 +1041,7 @@ Return all the bookings that the current user has made.
 - Request
 
   - Method: GET
-  - URL: /api/users/:userId/bookings
+  - URL: /api/bookings/current
   - Body: none
 
 - Successful Response
