@@ -34,7 +34,7 @@ const Spot = () => {
   const otherImg = SpotImages.filter((img) => img.preview !== true);
 
   return (
-    <div>
+    <div className="div-spot">
       <div>
         <h1>{name}</h1>
       </div>
@@ -43,26 +43,38 @@ const Spot = () => {
           {city}, {state}, {country}
         </h3>
       </div>
-      <div>
-        <img src={previewImg ? previewImg.url : ""} alt="previewImage" />
+      <div className="div-images">
+        <img
+          className="div-preview-image"
+          src={previewImg ? previewImg.url : ""}
+          alt="previewImage"
+        />
         {otherImg.map((img) => (
-          <img key={img.url} src={img.url} alt="otherImage" />
+          <img
+            className="img-other"
+            key={img.url}
+            src={img.url}
+            alt="otherImage"
+          />
         ))}
       </div>
-      <div>
+      <div className="div-spot-images">
         <div>
           <h2>
             Hosted by {firstname} {lastName}
           </h2>
           <p>{description}</p>
         </div>
-        <div>
+        <div className="div-price">
           <div>
             <span>${price}</span> night
           </div>
         </div>
         <div>
-          <button onClick={() => alert("Feature Comming Soon...")}>
+          <button
+            className="reserve-button"
+            onClick={() => alert("Feature Comming Soon...")}
+          >
             Reserve
           </button>
         </div>

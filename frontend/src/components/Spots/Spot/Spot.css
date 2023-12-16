@@ -1,0 +1,35 @@
+.div-spot{
+    display: flex;
+    margin : auto;
+    max-width: 1000px;
+    color: black;
+    justify-content: center;
+    flex-direction: column;
+
+}
+
+.div-images{
+
+}
+
+.div-preview-image{
+    display: grid;
+    max-width: 1000px;
+    gap: 6px;
+
+
+}
+
+/* .img-other{
+
+}
+
+.div-spot-images{
+
+}
+
+.div-price{}
+
+.reserve-button{
+
+} */

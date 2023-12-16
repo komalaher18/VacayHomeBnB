@@ -50,7 +50,7 @@ const ManageSpots = () => {
               </div>
             </NavLink>
             <div>
-              <button onClick={() => history.push(`/spots/${spot.id}/edit`)}>
+              <button onClick={() => navigate(`/spots/${spot.id}/edit`)}>
                 Update
               </button>
               <OpenModalButton
