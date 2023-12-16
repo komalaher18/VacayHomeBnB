@@ -1,0 +1,15 @@
+.div-spots {
+    display: grid;
+    margin: 10px auto;
+    max-width: 1000px;
+    grid: 255px/ repeat(auto-fill,255px)
+}
+
+.div-spot {
+    display: flex;
+    margin: 10px;
+    justify-content: center;
+    flex-direction: column;
+    text-decoration: none;
+    color: black;
+}

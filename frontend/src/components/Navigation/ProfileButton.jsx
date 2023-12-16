@@ -4,6 +4,7 @@ import * as sessionActions from "../../store/session";
 import OpenModalMenuItem from "./OpenModalMenuItem.jsx";
 import LoginFormModal from "../LoginFormModal/LoginFormModal.jsx";
 import SignupFormModal from "../SignupFormModal/SignupFormModal.jsx";
+import { NavLink } from "react-router-dom";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -47,26 +48,33 @@ function ProfileButton({ user }) {
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
           <>
-            <li>{user.username}</li>
-            <li>
-              {user.firstName} {user.lastName}
-            </li>
-            <li>{user.email}</li>
-            <li>
+            <div>
+              <div>Hello, {user.username}</div>
+              {/* <div>
+                {user.firstName} {user.lastName}
+              </div> */}
+              <div>{user.email}</div>
+            </div>
+            <hr />
+            <NavLink to="/spots/current" onClick={closeMenu}>
+              Manage Spots
+            </NavLink>
+            <hr />
+            <div>
               <button onClick={logout}>Log Out</button>
-            </li>
+            </div>
           </>
         ) : (
           <>
             <OpenModalMenuItem
-              itemText="Log In"
-              onItemClick={closeMenu}
-              modalComponent={<LoginFormModal />}
-            />
-            <OpenModalMenuItem
               itemText="Sign Up"
               onItemClick={closeMenu}
               modalComponent={<SignupFormModal />}
+            />
+            <OpenModalMenuItem
+              itemText="Log In"
+              onItemClick={closeMenu}
+              modalComponent={<LoginFormModal />}
             />
           </>
         )}
