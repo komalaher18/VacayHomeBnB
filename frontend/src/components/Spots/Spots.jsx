@@ -25,14 +25,15 @@ const Spots = () => {
           to={`/spots/${spot.id}`}
           title={spot.name}
         >
-          <div>
-            <img src={spot.previewImage} alt="preview" />
+          <div className="div-spotImage">
+            <img className="spot-image" src={spot.previewImage} alt="preview" />
           </div>
-          <div>
+          <div className="div-city-state">
             <div>
               {spot.city}, {spot.state}
             </div>
             <div>
+              {/* <i className="fa-solid fa-star"></i>{" "} */}
               <span style={{ fontWeight: "bold" }}>
                 {spot.avgRating > 0 ? spot.avgRating.toFixed(1) : "New"}
               </span>

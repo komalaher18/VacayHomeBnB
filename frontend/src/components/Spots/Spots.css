@@ -13,3 +13,23 @@
     text-decoration: none;
     color: black;
 }
+
+.div-spotImage{
+    display: flex;
+    height: 210px;
+    align-items: center;
+}
+
+
+.spot-image{
+    height: 200px;
+    width: 100%;
+    border:0.80px solid black
+
+}
+
+.div-city-state{
+    display: flex;
+    justify-content: space-between;
+
+}
