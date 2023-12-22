@@ -17,23 +17,22 @@ const Spots = () => {
   if (isLoading) return <h1>Loading...</h1>;
 
   return (
-    <div className="div-spots">
+    <div className="spots-div">
       {spots.map((spot) => (
         <NavLink
           key={spot.id}
-          className="div-spot"
+          className="spot-div"
           to={`/spots/${spot.id}`}
           title={spot.name}
         >
           <div className="div-spotImage">
             <img className="spot-image" src={spot.previewImage} alt="preview" />
           </div>
-          <div className="div-city-state">
+          <div className="div-location-stars">
             <div>
               {spot.city}, {spot.state}
             </div>
             <div>
-              {/* <i className="fa-solid fa-star"></i>{" "} */}
               <span style={{ fontWeight: "bold" }}>
                 {spot.avgRating > 0 ? spot.avgRating.toFixed(1) : "New"}
               </span>

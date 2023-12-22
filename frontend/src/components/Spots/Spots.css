@@ -1,17 +1,19 @@
-.div-spots {
+.spots-div {
     display: grid;
     margin: 10px auto;
     max-width: 1000px;
-    grid: 255px/ repeat(auto-fill,255px)
+    grid: 255px/ repeat(auto-fill,255px);
+
 }
 
-.div-spot {
+.spot-div {
     display: flex;
     margin: 10px;
     justify-content: center;
     flex-direction: column;
     text-decoration: none;
     color: black;
+
 }
 
 .div-spotImage{
@@ -24,12 +26,19 @@
 .spot-image{
     height: 200px;
     width: 100%;
-    border:0.80px solid black
+    border:2px solid black;
+    border-radius: 15px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+
 
 }
 
-.div-city-state{
+.div-location-stars{
     display: flex;
     justify-content: space-between;
+    margin-top: 15px;
+    margin-bottom: 7px;
+    text-decoration: none;
 
 }
