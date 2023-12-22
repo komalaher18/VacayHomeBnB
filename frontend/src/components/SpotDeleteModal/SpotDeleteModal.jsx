@@ -16,14 +16,16 @@ const SpotDeleteModal = ({ spotId }) => {
   };
 
   return (
-    <div className="form-container">
+    <div className="div-spot-dlt">
       <h1>Confirm Delete</h1>
-      <p>Are you sure you want to remove this spot from the listings?</p>
-      <button value="Yes" onClick={handleDelete}>
-        Yes
+      <p className="p">
+        Are you sure you want to remove this spot from the listings?
+      </p>
+      <button className="button-yes" value="Yes" onClick={handleDelete}>
+        Yes (Delete Spot)
       </button>
-      <button value="No" onClick={handleDelete}>
-        No
+      <button className="button-no" value="No" onClick={handleDelete}>
+        No (Keep Spot)
       </button>
     </div>
   );

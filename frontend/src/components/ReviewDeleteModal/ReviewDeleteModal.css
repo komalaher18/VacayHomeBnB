@@ -1,0 +1,26 @@
+.div-review-dlt{
+    text-align: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    gap: 10px;
+    padding-bottom: 10px;
+    border: 3px solid black;
+}
+
+
+.rev-dlt-button-yes{
+    width: 90%;
+    background-color:rgb(208, 39, 9);
+    color: white;
+    padding: 5px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.rev-dlt-button-no{
+    width: 90%;
+    background-color: darkgrey;
+    color: white;
+    padding: 5px;
+    cursor: pointer;
+}

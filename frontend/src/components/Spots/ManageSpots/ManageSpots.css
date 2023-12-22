@@ -1,0 +1,57 @@
+.button-click{
+    color: white;
+    background-color: gray;
+    border: 2px solid black;
+    cursor: pointer;
+
+}
+
+.div-grid{
+   display:grid;
+   grid: 300px/repeat(auto-fill, 250px);
+   max-width: 1000px;
+   margin:15px auto
+}
+.div-spot-A{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: black;
+    margin: 10px;
+    text-decoration: none;
+}
+
+
+.div-spot-img{
+    display: flex;
+    width: 100%;
+    height: 200px;
+
+
+}
+
+.image{
+    width: 100%;
+    height: 200px;
+    border: 2px solid black;
+
+}
+
+
+
+.div-location-stars{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+    margin-bottom: 7px;
+    text-decoration: none;
+
+}
+
+.buttons{
+    display: flex;
+    gap: 20px;
+    padding: 8px;
+    margin-top: -10px;
+
+}

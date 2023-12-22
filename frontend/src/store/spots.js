@@ -3,7 +3,9 @@ import { csrfFetch } from "./csrf";
 const ALL_SPOTS = "spots/ALL_SPOTS";
 const A_SPOT = "spots/A_SPOT";
 const CURRENT_SPOTS= "spots/CURRENT_SPOTS";
-const DELETE_SPOT = "spots/DELETE_SPOT"
+const DELETE_SPOT = "spots/DELETE_SPOT";
+const SPOT_REVIEWS = "spots/SPOT_REVIEWS";
+
 
 const allSpots = (spots) => {
   return {
@@ -33,6 +35,13 @@ const deleteASpot = (spotId) => {
     }
 }
 
+const spotReviews = (spotId, reviews) => {
+    return {
+        type: SPOT_REVIEWS,
+        spotId,reviews,
+    }
+}
+
 export const getAllSpots = () => async (dispatch) => {
   const response = await csrfFetch("/api/spots");
   if(response.ok){
@@ -42,6 +51,15 @@ export const getAllSpots = () => async (dispatch) => {
 }
 
 };
+
+export const getASpot = (spotId) => async(dispatch) => {
+    const response = await csrfFetch(`/api/spots/${spotId}`);
+    if(response.ok){
+        const data = await response.json();
+        dispatch(ASpot(data));
+        return data;
+    }
+}
 
 
 export const createSpot = (spot) => async(dispatch) => {
@@ -57,6 +75,8 @@ export const createSpot = (spot) => async(dispatch) => {
     }
 }
 
+
+
 export const addSpotImage = (spotId, image) => async() => {
     const response = await csrfFetch(`/api/spots/${spotId}/images`, {
         method: "POST",
@@ -65,14 +85,6 @@ export const addSpotImage = (spotId, image) => async() => {
     return response
 }
 
-export const getASpot = (spotId) => async(dispatch) => {
-    const response = await csrfFetch(`/api/spots/${spotId}`);
-    if(response.ok){
-        const data = await response.json();
-        dispatch(ASpot(data));
-        return data;
-    }
-}
 
 export const spotsCurrentUser = () => async(dispatch) => {
     const response = await csrfFetch("/api/spots/current");
@@ -109,6 +121,20 @@ export const removeASpot = (spotId) => async(dispatch) => {
     return response
 }
 
+export const spotIdReview = (spotId) => async(dispatch) => {
+    const response = await csrfFetch(`/api/spots/${spotId}/reviews`);
+    const data = await response.json();
+    dispatch(spotReviews(spotId, data.Reviews));
+    return response;
+}
+
+export const addReviewToSpot = (spotId, review, stars) => async() => {
+    const response = await csrfFetch(`/api/spots/${spotId}/reviews`,{
+        method: "POST",
+        body: JSON.stringify({review, stars})
+    });
+    return response;
+}
 
 const initialState = { entries: {}, current: {} };
 const spotsReducer = (state = initialState, action) => {
@@ -116,8 +142,6 @@ const spotsReducer = (state = initialState, action) => {
     case ALL_SPOTS: {
       const spots = action.spots.reduce((acc, spot) => {
         const exitingSpot = state.entries[spot.id];
-
-
         return { ...acc, [spot.id]: { ...exitingSpot, ...spot } };
 
       }, {});
@@ -145,6 +169,17 @@ const spotsReducer = (state = initialState, action) => {
       const revCurrent = { ...state.current };
       delete revCurrent[action.spotId];
       return { ...state, entries: revEntries, current: revCurrent };
+    }
+
+    case SPOT_REVIEWS: {
+        const existingSpot = state.entries[action.spotId];
+        return{
+            ...state,
+            entries: {
+                ...state.entries,
+                [action.spotId]:{...existingSpot, Reviews:action.reviews},
+            }
+        }
     }
 
     default:

@@ -23,25 +23,30 @@ const ManageSpots = () => {
 
   return (
     <div>
-      <h2 style={{ marginBottom: 0 }}>Manage Spots</h2>
+      <h2>Manage Your Spots</h2>
       {spots.length === 0 && (
-        <button onClick={() => navigate("/spots/new")}>
+        <button className="button-click" onClick={() => navigate("/spots/new")}>
           Create a New Spot
         </button>
       )}
 
-      <div>
+      <div className="div-grid">
         {spots.map((spot) => (
-          <div key={spot.id}>
-            <NavLink to={`/spots/${spot.id}`} title={spot.name}>
-              <div>
-                <img src={spot.previewImage} alt="preview" />
+          <div key={spot.id} className="div-spot">
+            <NavLink
+              className="div-spot-A"
+              to={`/spots/${spot.id}`}
+              title={spot.name}
+            >
+              <div className="div-spot-img">
+                <img className="image" src={spot.previewImage} alt="preview" />
               </div>
-              <div>
+              <div className="div-location-stars">
                 <div>
                   {spot.city}, {spot.state}
                 </div>
                 <div>
+                  <i className="fa-solid fa-star"></i>{" "}
                   <span style={{ fontWeight: "bold" }}>{spot.avgRating}</span>
                 </div>
               </div>
@@ -49,12 +54,15 @@ const ManageSpots = () => {
                 <span style={{ fontWeight: "bold" }}>${spot.price}</span> night
               </div>
             </NavLink>
-            <div>
-              <button onClick={() => navigate(`/spots/${spot.id}/edit`)}>
+            <div className="buttons">
+              <button
+                className="button-click"
+                onClick={() => navigate(`/spots/${spot.id}/edit`)}
+              >
                 Update
               </button>
               <OpenModalButton
-                className="action-button"
+                className="button-click"
                 buttonText="Delete"
                 modalComponent={<SpotDeleteModal spotId={spot.id} />}
               />

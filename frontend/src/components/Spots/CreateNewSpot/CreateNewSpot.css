@@ -1,0 +1,57 @@
+.spot-create-form{
+    width: 500px;
+    margin: auto;
+}
+
+.err{
+    color: red;
+}
+
+
+.div-input{
+    margin-bottom: 10px;
+    width: 100%;
+}
+.form-input{
+    width: 100%;
+    border: 1.5px solid black;
+}
+
+.two-input{
+    display: flex;
+    align-items: flex-end;
+    width: 100%;
+    margin-bottom: 10px;
+
+}
+
+.div-description{
+    margin-top: 10px;
+    border-top: 2px solid;
+    padding-top: 10px;
+}
+
+.price{
+    width:90% ;
+    margin-left: 8px;
+}
+
+.image-upload{
+    width: 100%;
+    margin-bottom: 10px;
+}
+.div-button-submit{
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+
+}
+
+.button{
+    background-color: red;
+    color: white;
+    cursor: pointer;
+    height: 30px;
+    width: 150px;
+
+}

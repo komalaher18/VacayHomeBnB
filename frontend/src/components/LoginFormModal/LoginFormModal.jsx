@@ -18,8 +18,11 @@ function LoginFormModal() {
       .then(closeModal)
       .catch(async (res) => {
         const data = await res.json();
-        if (data && data.errors) {
-          setErrors(data.errors);
+        // console.log("??????????", data);
+        // console.log("**********", errors);
+        if (data && data.message) {
+          // setErrors(data.message);
+          setErrors({ credential: data.message });
         }
       });
   };
@@ -32,38 +35,54 @@ function LoginFormModal() {
 
   return (
     <>
-      <div>
-        <h1>Log In</h1>
-        <form onSubmit={handleSubmit}>
-          <label>
-            Username or Email
-            <input
-              type="text"
-              value={credential}
-              onChange={(e) => setCredential(e.target.value)}
-              required
-            />
-          </label>
-          <label>
-            Password
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-          </label>
-          {errors.credential && <p>{errors.credential}</p>}
-          <button
-            type="submit"
-            disabled={credential.length < 4 || password.length < 6}
-          >
-            Log In
-          </button>
-        </form>
+      <div className="LogIn">
+        <div className="login-modal-div">
+          <h1>Log In</h1>
+        </div>
+        <div className="div-LogIn-form">
+          {errors.message && <p className="err">{errors.message}</p>}
 
-        <div>
-          <button onClick={demoLogin}>Demo User</button>
+          <form onSubmit={handleSubmit}>
+            <div>
+              <input
+                className="input"
+                type="text"
+                placeholder="Username or Email"
+                value={credential}
+                onChange={(e) => setCredential(e.target.value)}
+                required
+              />
+            </div>
+
+            <div>
+              <input
+                className="input"
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                }}
+                required
+              />
+            </div>
+            {errors.credential && <p className="err">{errors.credential}</p>}
+            <div className="div-button-login">
+              <button
+                className="login-button"
+                type="submit"
+                disabled={credential.length < 4 || password.length < 6}
+              >
+                Log In
+              </button>
+            </div>
+          </form>
+
+          <div>
+            <button className="div-demoUser" onClick={demoLogin}>
+              Demo User
+            </button>
+          </div>
         </div>
       </div>
     </>
