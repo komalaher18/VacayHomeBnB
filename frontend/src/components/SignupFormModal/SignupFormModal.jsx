@@ -143,12 +143,15 @@ function SignupFormModal() {
             className="button-signup"
             type="submit"
             disabled={
-              !email.length >= 1 ||
-              !username.length >= 4 ||
-              !firstName.length >= 1 ||
-              !lastName.length >= 1 ||
-              !password.length >= 6 ||
-              !confirmPassword.length >= 6
+              !firstName ||
+              !lastName ||
+              !email ||
+              !username ||
+              username.length < 4 ||
+              !password ||
+              password.length < 6 ||
+              !confirmPassword ||
+              confirmPassword.length < 6
             }
           >
             Sign Up
