@@ -57,6 +57,7 @@ const Spot = () => {
 
   const reviewComponent = (
     <div>
+      <i className="fa-solid fa-star"></i>{" "}
       {numReviews ? (
         <>
           {avgStarRating} . {numReviews} {numReviews > 1 ? "reviews" : "review"}

@@ -44,14 +44,15 @@ function SignupFormModal() {
   };
 
   return (
-    <>
-      <div className="div-header">
+    <div className="form">
+      <div className="header">
         <h1>Sign Up</h1>
       </div>
 
       <form className="form-signup" onSubmit={handleSubmit}>
-        <label>
-          First Name
+        <div>
+          {/* <label>
+            First Name */}
           <input
             className="input"
             placeholder="First Name"
@@ -60,10 +61,14 @@ function SignupFormModal() {
             onChange={(e) => setFirstName(e.target.value)}
             required
           />
-        </label>
-        {errors.firstName && <p className="signup-error">{errors.firstName}</p>}
-        <label>
-          Last Name
+          {/* </label> */}
+          {errors.firstName && (
+            <p className="signup-error">{errors.firstName}</p>
+          )}
+        </div>
+        <div>
+          {/* <label>
+            Last Name */}
           <input
             className="input"
             placeholder="Last Name"
@@ -72,10 +77,12 @@ function SignupFormModal() {
             onChange={(e) => setLastName(e.target.value)}
             required
           />
-        </label>
-        {errors.lastName && <p className="signup-error">{errors.lastName}</p>}
-        <label>
-          Email
+          {/* </label> */}
+          {errors.lastName && <p className="signup-error">{errors.lastName}</p>}
+        </div>
+        <div>
+          {/* <label>
+            Email */}
           <input
             className="input"
             placeholder="Email"
@@ -84,10 +91,12 @@ function SignupFormModal() {
             onChange={(e) => setEmail(e.target.value)}
             required
           />
-        </label>
-        {errors.email && <p className="signup-error">{errors.email}</p>}
-        <label>
-          Username
+          {/* </label> */}
+          {errors.email && <p className="signup-error">{errors.email}</p>}
+        </div>
+        <div>
+          {/* <label>
+            Username */}
           <input
             className="input"
             placeholder="Username"
@@ -96,11 +105,12 @@ function SignupFormModal() {
             onChange={(e) => setUsername(e.target.value)}
             required
           />
-        </label>
-        {errors.username && <p className="signup-error">{errors.username}</p>}
-
-        <label>
-          Password
+          {/* </label> */}
+          {errors.username && <p className="signup-error">{errors.username}</p>}
+        </div>
+        <div>
+          {/* <label>
+            Password */}
           <input
             className="input"
             placeholder="Password"
@@ -109,10 +119,12 @@ function SignupFormModal() {
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-        </label>
-        {errors.password && <p className="signup-error">{errors.password}</p>}
-        <label>
-          Confirm Password
+          {/* </label> */}
+          {errors.password && <p className="signup-error">{errors.password}</p>}
+        </div>
+        <div>
+          {/* <label>
+            Confirm Password */}
           <input
             className="input"
             placeholder="Confirm Password"
@@ -121,20 +133,21 @@ function SignupFormModal() {
             onChange={(e) => setConfirmPassword(e.target.value)}
             required
           />
-        </label>
-        {errors.confirmPassword && (
-          <p className="signup-error">{errors.confirmPassword}</p>
-        )}
+          {/* </label> */}
+          {errors.confirmPassword && (
+            <p className="signup-error">{errors.confirmPassword}</p>
+          )}
+        </div>
         <div className="div-button">
           <button
-            type="submit"
             className="button-signup"
+            type="submit"
             disabled={
-              !email.length >= 1 &&
-              !username.length >= 4 &&
-              !firstName.length >= 1 &&
-              !lastName.length >= 1 &&
-              !password.length >= 6 &&
+              !email.length >= 1 ||
+              !username.length >= 4 ||
+              !firstName.length >= 1 ||
+              !lastName.length >= 1 ||
+              !password.length >= 6 ||
               !confirmPassword.length >= 6
             }
           >
@@ -142,7 +155,7 @@ function SignupFormModal() {
           </button>
         </div>
       </form>
-    </>
+    </div>
   );
 }
 

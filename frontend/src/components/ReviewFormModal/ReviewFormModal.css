@@ -2,8 +2,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    border:4px solid black;
+    /* border:4px solid black; */
     /* border-radius: 15px; */
+    width: 400px;
 }
 
 .font{
@@ -26,11 +27,48 @@
     color: red;
 }
 
-.stars{
+.star{
     height: 46px;
     padding: 0 10px;
-    margin-top:20px
+    float: left;
 }
+
+.star:not(:checked)>input {
+    position: absolute;
+    top: -9999px;
+}
+
+.star:not(:checked)>label {
+    float: right;
+    width: 1em;
+    overflow: hidden;
+    white-space: nowrap;
+    cursor: pointer;
+    font-size: 30px;
+    color: #ccc;
+}
+
+.star:not(:checked)>label:before {
+    content: "★ ";
+}
+
+.star>input:checked~label {
+    color: #ffc700;
+}
+
+.star:not(:checked)>label:hover,
+.star:not(:checked)>label:hover~label {
+    color: #deb217;
+}
+
+.star>input:checked+label:hover,
+.star>input:checked+label:hover~label,
+.star>input:checked~label:hover,
+.star>input:checked~label:hover~label,
+.star>label:hover~input:checked~label {
+    color: #c59b08;
+}
+
 
 .review-submit{
     color: white;
