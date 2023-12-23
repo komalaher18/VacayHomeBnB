@@ -34,7 +34,7 @@ const Spots = () => {
             </div>
             <div>
               <span style={{ fontWeight: "bold" }}>
-                {spot.avgRating > 0 ? spot.avgRating.toFixed(1) : "New"}
+                {spot.avgRating > 0 ? spot.avgRating : "New"}
               </span>
             </div>
           </div>
