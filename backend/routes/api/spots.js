@@ -202,12 +202,8 @@ const editedSpot = {
 let sum = 0;
 
 if(Reviews.length){
-    const starCount = Reviews.map(review =>{
-        sum = sum+ review.stars;
-        return sum;
-    });
+    const starCount = Reviews.reduce((sum, rev) => sum + rev.stars, 0);
     editedSpot.avgStarRating = Number(starCount/Reviews.length).toFixed(1);
-
 }
     res.json(editedSpot);
 });
@@ -236,14 +232,10 @@ router.post("/:spotId/reviews", [requireAuth, ...validateReview] ,async(req, res
             attributes: ["stars"],
         }],
     });
-    // console.log("****",spot)
-
     if(!spot) {
         return res.status(404).json({ "message": "Spot couldn't be found" });
 
     }
-    // console.log("****",spot)
-
     const { Reviews,  avgRating } = spot.toJSON();
 
     const rev = await Review.findOne({
@@ -255,15 +247,11 @@ router.post("/:spotId/reviews", [requireAuth, ...validateReview] ,async(req, res
         return res.status(500).json({ "message": "User already has a review for this spot" });
     }
     if(Reviews.length){
-        // console.log("****", Reviews)
-        let sum = stars;
-        const starCount = Reviews.map(review =>{
-            sum = sum+ review.stars ;
-            return sum;
-        });
-        spot.update({...spot, avgRating: Number(starCount/Reviews.length).toFixed(1)});
-     }else{
+        const starCount = Reviews.reduce((sum, rev) => sum + rev.stars, 0);
+         spot.update({...spot, avgRating: Number(starCount/Reviews.length + 1).toFixed(1)});
+        }else{
         spot.update({...spot, avgRating: stars});
+        console.log("****line265***", avgRating)
     }
 
     const createReview = await Review.create({

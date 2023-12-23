@@ -4,9 +4,11 @@ import * as sessionActions from "../../store/session";
 import OpenModalMenuItem from "./OpenModalMenuItem.jsx";
 import LoginFormModal from "../LoginFormModal/LoginFormModal.jsx";
 import SignupFormModal from "../SignupFormModal/SignupFormModal.jsx";
+import { NavLink, useNavigate } from "react-router-dom";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [showMenu, setShowMenu] = useState(false);
   const ulRef = useRef();
 
@@ -35,29 +37,44 @@ function ProfileButton({ user }) {
     e.preventDefault();
     dispatch(sessionActions.logout());
     closeMenu();
+    navigate("/");
   };
 
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
 
   return (
     <>
-      <button onClick={toggleMenu}>
-        <i className="fas fa-user-circle" />
+      <button className="button-menu" onClick={toggleMenu}>
+        <i className="fas fa-regular fa-bars fa-lg menu-button-icon" />
+        <i className="fas fa-user-circle fa-lg menu-button-icon" />
       </button>
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
           <>
-            <li>{user.username}</li>
-            <li>
-              {user.firstName} {user.lastName}
-            </li>
-            <li>{user.email}</li>
-            <li>
-              <button onClick={logout}>Log Out</button>
-            </li>
+            <div>
+              <div>Hello, {user.username}</div>
+              {/* <div>
+                {user.firstName} {user.lastName}
+              </div> */}
+              <div>{user.email}</div>
+            </div>
+
+            <NavLink
+              className="nav-manage-spot"
+              to="/spots/current"
+              onClick={closeMenu}
+            >
+              Manage Spots
+            </NavLink>
+
+            <div className="div-logout">
+              <button className="button-logout" onClick={logout}>
+                Log Out
+              </button>
+            </div>
           </>
         ) : (
-          <>
+          <div className="div-profile">
             <OpenModalMenuItem
               itemText="Log In"
               onItemClick={closeMenu}
@@ -68,7 +85,7 @@ function ProfileButton({ user }) {
               onItemClick={closeMenu}
               modalComponent={<SignupFormModal />}
             />
-          </>
+          </div>
         )}
       </ul>
     </>

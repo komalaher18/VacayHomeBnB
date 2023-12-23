@@ -1,0 +1,114 @@
+.location-head{
+    margin-top: -10px;
+    font-weight: normal;
+}
+
+.div-spot-detail{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 1000px;
+    margin : auto;
+    color: black;
+    text-decoration: none;
+}
+
+.div-images{
+    display: grid;
+    max-width: 1000px;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap:5px
+
+}
+
+.div-preview-image{
+    /* display: grid;
+    max-width: 1000px;
+    gap: 6px;
+    width: 100%;
+    order:1; */
+    grid-row: span 2;
+    width: 500px;
+    height: 350px;
+}
+
+.img-other{
+    width: 100%;
+    height: 172px;
+}
+
+.div-spot-images{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 2px solid;
+    padding-bottom: 10px;
+    margin: 10px 0;
+
+}
+
+.div-price-box{
+    display: flex;
+    flex-direction: column;
+    border: 2px solid;
+    border-radius: 15px;
+    align-items: center;
+    padding: 20px;
+    width: 300px;
+    height: 70px;
+    justify-content: space-between;
+}
+
+.div-content{
+    display: flex;
+    justify-content: space-between;
+    align-items:baseline;
+    width: 100%;
+}
+
+.reserve-button{
+    background-color: rgb(174, 20, 20);
+    color: white;
+    font-size: 14px;
+    width: 300px;
+    height: 40px;
+    cursor: pointer;
+
+}
+
+.review-heading{
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.review-post{
+    margin: 10px 0;
+}
+
+.button-post-review{
+    color: white;
+    background-color: grey;
+    font-size: 14px;
+    border: 2px solid black;
+    cursor: pointer;
+}
+
+.firstname-review{
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.date-review{
+    color: gray;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.delete-review-button{
+    font-size: 14px;
+    color: white;
+    background-color: grey;
+    border: 2px solid black;
+    cursor: pointer;
+}

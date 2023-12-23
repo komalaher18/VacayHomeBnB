@@ -1,0 +1,47 @@
+.form{
+    /* border: 2px solid black; */
+    border-radius: 4px;
+}
+.form-signup{
+    display: flex;
+    flex-direction: column;
+    gap:8px;
+    justify-content: center;
+
+}
+
+.signup-error{
+    color: rgb(195, 22, 22)
+}
+
+.input{
+    height: 20px;
+    width: 350px;
+    border: 2px solid black;
+
+
+}
+.div-button{
+    display: flex;
+    justify-content: center;
+
+}
+
+.button-signup{
+    color: white;
+    background-color: rgb(195, 22, 22);
+    border: 2px solid black;
+    border-radius: 4px;
+    box-shadow:5px 5px 5px rgba(0, 0, 0, 0.4);
+    width: 360px;
+    padding: 8px;
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+
+.button-signup:disabled {
+    color: rgb(179, 178, 178);
+    background-color: rgb(232, 226, 226);
+    border: 2px solid gray;
+
+}

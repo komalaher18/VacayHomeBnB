@@ -1,0 +1,44 @@
+.spots-div {
+    display: grid;
+    margin: 10px auto;
+    max-width: 1000px;
+    grid: 255px/ repeat(auto-fill,255px);
+
+}
+
+.spot-div {
+    display: flex;
+    margin: 10px;
+    justify-content: center;
+    flex-direction: column;
+    text-decoration: none;
+    color: black;
+
+}
+
+.div-spotImage{
+    display: flex;
+    height: 210px;
+    align-items: center;
+}
+
+
+.spot-image{
+    height: 200px;
+    width: 100%;
+    border:2px solid black;
+    border-radius: 15px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+
+
+}
+
+.div-location-stars{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+    margin-bottom: 7px;
+    text-decoration: none;
+
+}
