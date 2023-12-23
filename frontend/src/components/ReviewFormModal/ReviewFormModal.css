@@ -2,75 +2,36 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* border:4px solid black; */
-    /* border-radius: 15px; */
     width: 400px;
 }
 
-.font{
-    font-family:sans-serif;
-}
 
-.textarea{
+.input-review {
     width: 90%;
-    height: 70px;
-    margin-top: -30px;
-    border: 2px solid black
+    height: 100px;
+    margin-bottom: 10px;
 }
 
-.star-rating {
+.star-container {
     display: flex;
     align-items: center;
+    margin-bottom: 10px;
+    margin-top: 10px;
 }
 
-.err{
-    color: red;
-}
-
-.star{
-    height: 46px;
-    padding: 0 10px;
-    float: left;
-}
-
-.star:not(:checked)>input {
-    position: absolute;
-    top: -9999px;
-}
-
-.star:not(:checked)>label {
-    float: right;
-    width: 1em;
-    overflow: hidden;
-    white-space: nowrap;
+.star {
+    font-size: 20px;
+    margin-right: 5px;
+    background-color: white;
     cursor: pointer;
-    font-size: 30px;
-    color: #ccc;
 }
 
-.star:not(:checked)>label:before {
-    content: "★ ";
+.star:hover,
+.star.active {
+    color: gold;
 }
 
-.star>input:checked~label {
-    color: #ffc700;
-}
-
-.star:not(:checked)>label:hover,
-.star:not(:checked)>label:hover~label {
-    color: #deb217;
-}
-
-.star>input:checked+label:hover,
-.star>input:checked+label:hover~label,
-.star>input:checked~label:hover,
-.star>input:checked~label:hover~label,
-.star>label:hover~input:checked~label {
-    color: #c59b08;
-}
-
-
-.review-submit{
+.review-submit {
     color: white;
     background-color: rgb(176, 7, 7);
     border: 2px solid black;
@@ -82,7 +43,7 @@
     font-size: 15px;
 }
 
-.review-submit:disabled{
+.review-submit:disabled {
     color: rgb(138, 134, 134);
     background-color: lightgray;
     border: 2px solid gray;
