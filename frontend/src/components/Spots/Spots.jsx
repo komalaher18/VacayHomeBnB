@@ -33,6 +33,7 @@ const Spots = () => {
               {spot.city}, {spot.state}
             </div>
             <div>
+              <i className="fa-solid fa-star"></i>{" "}
               <span style={{ fontWeight: "bold" }}>
                 {spot.avgRating > 0 ? spot.avgRating : "New"}
               </span>
