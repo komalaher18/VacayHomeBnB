@@ -23,7 +23,7 @@ const ManageSpots = () => {
 
   return (
     <div>
-      <h2>Manage Your Spots</h2>
+      <h2>Manage Spots</h2>
       {spots.length === 0 && (
         <button className="button-click" onClick={() => navigate("/spots/new")}>
           Create a New Spot

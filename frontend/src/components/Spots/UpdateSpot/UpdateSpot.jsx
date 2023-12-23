@@ -25,11 +25,11 @@ const UpdateSpot = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [errors, setErrors] = useState({});
 
-  // const validUrl = (url) => {
-  //   return (
-  //     url.endsWith(".jpg") || url.endsWith(".png") || url.endsWith(".jpeg")
-  //   );
-  // };
+  const validUrl = (url) => {
+    return (
+      url.endsWith(".jpg") || url.endsWith(".png") || url.endsWith(".jpeg")
+    );
+  };
 
   const validate = () => {
     setErrors({});
@@ -67,60 +67,31 @@ const UpdateSpot = () => {
         ...errors,
         previewImage: "PreviewImage is required",
       }));
-    // else if (!validUrl(previewImage))
-    else if (
-      !previewImage.endsWith(".png") &&
-      !previewImage.endsWith(".jpg") &&
-      !previewImage.endsWith(".jpeg")
-    )
+    else if (!validUrl(previewImage))
       setErrors((errors) => ({
         ...errors,
         previewImage: "Image URL must end in .png, .jpg, or .jpeg",
       }));
 
-    // if (image1 && !validUrl(image1))
-    if (
-      image1 &&
-      !image1.endsWith(".png") &&
-      !image1.endsWith(".jpg") &&
-      !image1.endsWith(".jpeg")
-    )
+    if (image1 && !validUrl(image1))
       setErrors((errors) => ({
         ...errors,
         image1: "Image URL must end in .png, .jpg, or .jpeg",
       }));
 
-    // if (image2 && !validUrl(image2))
-    if (
-      image2 &&
-      !image2.endsWith(".png") &&
-      !image2.endsWith(".jpg") &&
-      !image2.endsWith(".jpeg")
-    )
+    if (image2 && !validUrl(image2))
       setErrors((errors) => ({
         ...errors,
         image2: "Image URL must end in .png, .jpg, or .jpeg",
       }));
 
-    // if (image3 && !validUrl(image3))
-    if (
-      image3 &&
-      !image3.endsWith(".png") &&
-      !image3.endsWith(".jpg") &&
-      !image3.endsWith(".jpeg")
-    )
+    if (image3 && !validUrl(image3))
       setErrors((errors) => ({
         ...errors,
         image3: "Image URL must end in .png, .jpg, or .jpeg",
       }));
 
-    // if (image4 && !validUrl(image4))
-    if (
-      image4 &&
-      !image4.endsWith(".png") &&
-      !image4.endsWith(".jpg") &&
-      !image4.endsWith(".jpeg")
-    )
+    if (image4 && !validUrl(image4))
       setErrors((errors) => ({
         ...errors,
         image4: "Image URL must end in .png, .jpg, or .jpeg",
@@ -394,7 +365,7 @@ const UpdateSpot = () => {
 
       <div className="div-button-submit">
         <button className="button" type="submit">
-          Update Spot
+          Update your Spot
         </button>
       </div>
     </form>

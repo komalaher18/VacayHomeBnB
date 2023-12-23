@@ -43,7 +43,7 @@ const ReviewFormModal = ({ spotId, spotFetch }) => {
       ></textarea>
 
       <div className="star-rating">
-        <div className="stars">
+        <div className="star">
           <input
             type="radio"
             id="star5"
