@@ -127,9 +127,12 @@ router.get("/",validateQuery,async( req, res) => {
         include: [
             {
                 model: SpotImage,
+
                 where: { preview: true },
                 attributes: ["url"],
+
             },
+
 
         ],
         limit,
@@ -177,7 +180,7 @@ router.get("/:spotId", async(req, res) => {
         {
             model: User,
             as : 'Owner',
-            attributes: ["id", "firstname", "lastName"]
+            attributes: ["id", "firstName", "lastName"]
         },
         {
             model: Review,
