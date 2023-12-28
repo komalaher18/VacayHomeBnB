@@ -28,12 +28,6 @@ The Key features of the site:
 
 <br>
 
-## Preview
-
-[HomePage](/VacayHomebnb/images/landing_page.png)
-
-<br>
-
 ## Getting Started
 
 1. Clone this repository
