@@ -15,7 +15,7 @@
 
 ## Link to Live Site
 
-https://komal-auth-me.onrender.com
+[VacayHomeBnB Live Site](https://komal-auth-me.onrender.com)
 
 ## Description
 
